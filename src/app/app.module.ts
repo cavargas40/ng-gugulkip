@@ -1,12 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
-import { TodoAppComponent } from './todo-app';
-
-import { TodoService } from './todo.service';
+import { TodoAppComponent } from './components/todo-app/todo-app.component';
 
 @NgModule({
   declarations: [
@@ -16,9 +14,9 @@ import { TodoService } from './todo.service';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    CommonModule,
   ],
-  providers: [TodoService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

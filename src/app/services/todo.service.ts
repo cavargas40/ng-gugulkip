@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Todo } from './todo';
+import { Todo } from '../models/todo';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class TodoService {
-
-  //Marca la posicion para el ultimo id we se va a simular
-  //incrementa automaticamente los id
+  //Marks the position for the last simulated id
+  //incrementa automaticly the ids
   LastId: number = 0;
 
-  //Marca la posicion para Todo's
-  todos: Todo[] = [];
+  todos: Array<Todo> = [];
 
-  constructor() { }
+  constructor() {}
 
-  //Simula POST /todos
+  //Simulate POST /todos
   addTodo(todo: Todo): TodoService {
     if (!todo.id) {
       todo.id = ++this.LastId;
@@ -22,23 +22,23 @@ export class TodoService {
     return this;
   }
 
-  //Simula DELETE /todos/:id
+  //Simulate DELETE /todos/:id
   deleteTodoById(id: number): TodoService {
-    this.todos = this.todos.filter(todo => todo.id !== id);
+    this.todos = this.todos.filter((todo) => todo.id !== id);
     return this;
   }
 
-  //Simula GET /todos
+  //Simulate GET /todos
   getAllTodos(): Todo[] {
     return this.todos;
   }
 
-  //Simula GET /todos/:id
+  //Simulate GET /todos/:id
   getTodoById(id: number): Todo {
-    return this.todos.filter(todo => todo.id === id).pop();
+    return this.todos.filter((todo) => todo.id === id).pop();
   }
 
-  //Simula PUT /todos/:id
+  //Simulate PUT /todos/:id
   updateTodoById(id: number, values: Object = {}): Todo {
     let todo = this.getTodoById(id);
     if (!todo) {
@@ -53,5 +53,4 @@ export class TodoService {
     let updateTodo = this.updateTodoById(todo.id, { complete: !todo.complete });
     return updateTodo;
   }
-
 }
